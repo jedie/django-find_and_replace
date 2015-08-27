@@ -193,6 +193,7 @@ setup(
     maintainer="Jens Diemer",
     url='',
     download_url = '',
+    install_requires=["django-cms>=3.0.10,<3.1",],
     packages=find_packages(),
     include_package_data=True, # include package data under version control
     zip_safe=False,
