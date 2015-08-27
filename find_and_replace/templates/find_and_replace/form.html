@@ -1,0 +1,16 @@
+{% extends "admin/base.html" %}
+{% load i18n admin_static admin_modify cms_admin %}
+
+{% block title %}{% trans "Change a page" %}{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <form action="{{ form_url }}" method="post" id="find_and_replace_form" class="pylucid_form">
+        {% csrf_token %}
+        {{ form }}
+        <div class="helper_buttons">
+            <input type="submit" name="save" value="{% trans 'find and replace' %}" />
+        </div>
+    </form>
+</div>
+{% endblock %}
