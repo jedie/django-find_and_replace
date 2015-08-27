@@ -8,6 +8,7 @@
     :created: 2015 by JensDiemer.de
     :license: GNU GPL v3 or above, see LICENSE for more details.
 """
+from django.db.models.loading import get_apps, get_models
 
 from django import forms
 from django.contrib.sites.models import Site
@@ -39,6 +40,10 @@ class FindReplaceForm(forms.Form):
     find_string = forms.CharField()
     replace_string = forms.CharField()
 
+    model_fields = forms.MultipleChoiceField(
+        help_text=_("Model fields to apply find&replace")
+    )
+
     # content_type = forms.ChoiceField(
     #     choices=CONTENT_TYPES_CHOICES,
     #     help_text=_("Please select the content type for the operation.")
@@ -57,8 +62,21 @@ class FindReplaceForm(forms.Form):
 
     )
 
-    # def __init__(self, *args, **kwargs):
-    #     super(FindReplaceForm, self).__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        super(FindReplaceForm, self).__init__(*args, **kwargs)
+
+
+        model_fields = []
+
+        for app in get_apps():
+            for model in get_models(app):
+                model_fields.append(
+                    "%s.%s" % (app.__name__, model._meta.object_name)
+                )
+
+        self.fields["model_fields"].choices = [(model_field,model_field) for model_field in model_fields]
+
+
     #
     #     preferences = get_preferences()
     #     self.fields["find_string"].min_length = preferences["min_term_len"]

@@ -213,5 +213,6 @@ setup(
         'Topic :: Communications',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
         "Operating System :: OS Independent",
-    ]
+    ],
+    test_suite = "find_and_replace.tests.manage.main",
 )
