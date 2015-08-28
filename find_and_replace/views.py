@@ -1,3 +1,15 @@
+# coding: utf-8
+
+"""
+    django find&replace
+    ~~~~~~~~~~~~~~~
+
+    :copyleft: 2015 by find&replace team, see AUTHORS for more details.
+    :created: 2015 by JensDiemer.de
+    :license: GNU GPL v3 or above, see LICENSE for more details.
+"""
+
+from __future__ import absolute_import, print_function
 
 from django.views.generic import FormView
 

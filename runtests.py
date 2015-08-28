@@ -15,7 +15,7 @@
     ./runtests.py tests.test_file.test_class
     ./runtests.py tests.test_file.test_class.test_method
 
-    :copyleft: 2015 by the django-reversion-compare team, see AUTHORS for more details.
+    :copyleft: 2015 by the find&replace team, see AUTHORS for more details.
     :created: 2015 by JensDiemer.de
     :license: GNU GPL v3 or above, see LICENSE for more details.
 """

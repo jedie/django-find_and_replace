@@ -2,7 +2,7 @@
 # coding: utf-8
 
 """
-    distutils setup
+    django find&replace
     ~~~~~~~~~~~~~~~
 
     :copyleft: 2015 by find&replace team, see AUTHORS for more details.
@@ -193,7 +193,13 @@ setup(
     maintainer="Jens Diemer",
     url='',
     download_url = '',
-    install_requires=["django-cms>=3.0.10,<3.1",],
+    install_requires=[
+        "django-cms>=3.0.10,<3.1",
+    ],
+    tests_require=[
+        'djangocms-text-ckeditor',
+        "django-tools>=0.29.2",  # https://github.com/jedie/django-tools/
+    ],
     packages=find_packages(),
     include_package_data=True, # include package data under version control
     zip_safe=False,
