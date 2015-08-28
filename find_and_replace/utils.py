@@ -64,3 +64,13 @@ def field_list2choices(fields):
     return [
         (index, field2dot_name(field)) for index, field in enumerate(fields)
     ]
+
+def get_filtered_field_choices(app_labels=None, model_fields=None):
+    return field_list2choices(
+        filter_model_fields(
+            app_labels=app_labels,
+            model_fields=model_fields
+        )
+    )
+
+

@@ -30,20 +30,24 @@ MIDDLEWARE_CLASSES = (
     #'django_tools.middlewares.QueryLogMiddleware.QueryLogMiddleware',
 )
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.contrib.messages.context_processors.messages',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.request',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-
-    'sekizai.context_processors.sekizai',
-    'cms.context_processors.cms_settings',
+    "django.contrib.auth.context_processors.auth",
+    "django.contrib.messages.context_processors.messages",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.request",
+    "django.core.context_processors.media",
+    'django.core.context_processors.csrf',
+    "django.core.context_processors.tz",
+    "sekizai.context_processors.sekizai",
+    "django.core.context_processors.static",
+    "cms.context_processors.media",
+    "cms.context_processors.cms_settings",
 )
 
 LANGUAGE_CODE = "en"
 LANGUAGES = [
     ('en', 'English'),
+    ('de', 'German'),
 ]
 SECRET_KEY = 'unittests-fake-key'
 
@@ -78,6 +82,7 @@ del(_temp_db_name)
 
 
 DEBUG=True
+TEMPLATE_DEBUG=True
 
 INSTALLED_APPS = [
     'django.contrib.auth',
@@ -86,6 +91,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
+    'django.contrib.messages',
 
     'cms',
     'mptt',

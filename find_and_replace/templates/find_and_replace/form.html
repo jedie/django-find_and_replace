@@ -3,11 +3,21 @@
 
 {% block title %}{% trans "Change a page" %}{% endblock %}
 
+{% block extrahead %}
+{{ block.super }}
+<style>
+#id_model_fields {
+    height: 20em
+}
+</style>
+{% endblock %}
+
+
 {% block content %}
 <div id="content-main">
-    <form action="{{ form_url }}" method="post" id="find_and_replace_form" class="pylucid_form">
+    <form action="{{ form_url }}" method="post" id="find_and_replace_form">
         {% csrf_token %}
-        {{ form }}
+        {{ form.as_ul }}
         <div class="helper_buttons">
             <input type="submit" name="save" value="{% trans 'find and replace' %}" />
         </div>
