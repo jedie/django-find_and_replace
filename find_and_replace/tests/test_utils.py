@@ -16,7 +16,7 @@ from pprint import pprint
 from django.db import models
 from django.test import SimpleTestCase
 
-from find_and_replace.utils import filter_model_fields, field_list2choices, \
+from find_and_replace.model_fields import filter_model_fields, field_list2choices, \
     field2dot_name
 
 

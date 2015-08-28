@@ -14,6 +14,7 @@ from django.contrib.auth import get_user_model
 from django.template import RequestContext
 
 from django.views.generic import FormView
+from find_and_replace.model_fields import get_fields_from_choice
 
 from .forms import FindReplaceForm
 
@@ -43,4 +44,18 @@ class FindAndReplace(FormView):
         return context
 
     def form_valid(self, form):
+        # {'simulate': True, 'replace_string': '', 'model_fields': ['4', '7'], 'find_string': 's', 'languages': ['en'], 'sites': ['1']}
+
+        print(form.cleaned_data)
+
+        field_choice = form.cleaned_data["model_fields"]
+        fields = get_fields_from_choice(field_choice)
+
+        apps = []
+        models = []
+        for field in fields:
+            print(field.model._meta.app_label)
+            print(field.model._meta.object_name)
+            print(field)
+
         raise NotImplementedError("TODO")

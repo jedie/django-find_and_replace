@@ -9,28 +9,12 @@
     :license: GNU GPL v3 or above, see LICENSE for more details.
 """
 from django.conf import settings
-from django.db import models
-from django.db.models.loading import get_apps, get_models
+
 from django.utils.translation import get_language
 from django import forms
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext as _
-
-
-from find_and_replace.settings import FIND_AND_REPLACE_APP_LABELS, \
-    FIND_AND_REPLACE_FIELDS
-from find_and_replace.utils import get_filtered_field_choices
-
-
-def get_model_fields():
-    return tuple([getattr(models, field_name) for field_name in FIND_AND_REPLACE_FIELDS])
-
-
-def field_choices():
-    return get_filtered_field_choices(
-        app_labels=FIND_AND_REPLACE_APP_LABELS,
-        model_fields=get_model_fields(),
-    )
+from find_and_replace.model_fields import field_choices
 
 
 class FindReplaceForm(forms.Form):

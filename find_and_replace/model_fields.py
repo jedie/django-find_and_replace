@@ -11,7 +11,12 @@
 
 from __future__ import absolute_import, print_function
 
+from django.db import models
+
 from django.db.models.loading import get_apps, get_models
+
+from find_and_replace.settings import FIND_AND_REPLACE_APP_LABELS, \
+    FIND_AND_REPLACE_FIELDS
 
 
 def field2dot_name(field):
@@ -73,4 +78,23 @@ def get_filtered_field_choices(app_labels=None, model_fields=None):
         )
     )
 
+def get_model_fields():
+    return tuple([getattr(models, field_name) for field_name in FIND_AND_REPLACE_FIELDS])
 
+
+def field_choices():
+    return get_filtered_field_choices(
+        app_labels=FIND_AND_REPLACE_APP_LABELS,
+        model_fields=get_model_fields(),
+    )
+
+def get_fields_from_choice(field_choice):
+    all_fields = filter_model_fields(
+        app_labels=FIND_AND_REPLACE_APP_LABELS,
+        model_fields=get_model_fields(),
+    )
+    fields = []
+    for index in field_choice:
+        fields.append(all_fields[int(index)])
+
+    return fields
